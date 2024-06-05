@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UMSA-FCPN-MAT</title>
+</head>
+<body>
+  <h1>Convergencia de la serie 1/n^2 a pi^2/6</h1>
+
+  <form id="myForm">
+    <label for="n">Ingrese el valor de n:</label>
+    <input type="number" id="n" name="n" min="1" required>
+    <button type="submit">Calcular</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const form = document.getElementById('myForm');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const n = document.getElementById('n').value;
+
+      // Crear el vector v
+      const v = [];
+      for (let i = 1; i <= n; i++) {
+        v.push(1/i**2);
+      }
+
+      // Calcular la suma de los términos
+      const sum = v.reduce((a, b) => a + b, 0);
+
+      // Calcular pi^2/6
+      const pi_squared_over_6 = Math.PI**2 / 6;
+
+      // Mostrar los resultados
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+        <p>Suma para n = ${n}: ${sum.toFixed(10)}</p>
+        <p>Valor de pi^2/6: ${pi_squared_over_6.toFixed(10)}</p>
+        <p>La diferencia entre la suma y pi^2/6 es: ${Math.abs(sum - pi_squared_over_6).toFixed(10)}</p>
+      `;
+    });
+  </script>
+</body>
+</html>
